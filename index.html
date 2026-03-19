@@ -110,7 +110,7 @@
   .services-heading em { font-style: italic; color: var(--accent); }
   .services-subhead { color: rgba(28,31,26,0.5); font-size: 0.9rem; line-height: 1.75; margin-top: 16px; }
   .services-grid { display: grid; grid-template-columns: repeat(3,1fr); }
-  .service-card { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; transition: background 0.3s; }
+  .service-card { border-right: 1px solid var(--border); border-bottom: 1px solid var(--border); overflow: hidden; transition: background 0.3s; width: 100%; }
   .service-card:nth-child(3n) { border-right: none; }
   .service-img-wrap { overflow: hidden; }
   .service-img { width: 100%; height: 240px; object-fit: cover; object-position: center; display: block; transition: transform 0.6s ease; }
@@ -152,8 +152,8 @@
     font-family: "DM Sans", sans-serif; font-size: 0.92rem; color: var(--text);
     padding: 0; appearance: none;
   }
-  .field input::placeholder, .field textarea::placeholder { color: #c0bbb4; }
-  .field select { color: #c0bbb4; cursor: pointer; }
+  .field input::placeholder, .field textarea::placeholder { color: #8a8278; }
+  .field select { color: #8a8278; cursor: pointer; }
   .field select option { background: var(--white); color: var(--text); }
   .field select.filled { color: var(--text); }
   .field textarea { height: 80px; resize: none; }
@@ -175,20 +175,76 @@
 
   /* RESPONSIVE */
   @media (max-width: 860px) {
-    nav { padding: 16px 24px; }
+
+    /* NAV — keep logo on one line, only show CTA button */
+    nav { padding: 14px 20px; }
+    .nav-logo { font-size: 0.95rem; white-space: nowrap; }
     .nav-links li:not(:last-child) { display: none; }
-    .hero { padding: 0 24px 56px; }
-    .about, .contact { grid-template-columns: 1fr; }
-    .about-left, .about-right, .contact-left, .contact-right { padding: 56px 24px; border-right: none; }
-    .services-header { padding: 64px 24px 40px; }
-    .services-cta-row { padding: 32px 24px; }
-    .services-grid { grid-template-columns: 1fr; }
-    .service-card { border-right: none; }
+    .nav-cta { padding: 7px 14px !important; font-size: 0.75rem !important; }
+
+    /* HERO — fix headline overflow and banner height */
+    .hero { padding: 0 20px 52px; min-height: 100vh; max-height: 100vh; }
+    .hero-img, .hero video { min-height: 100vh; max-height: 100vh; }
+    .hero-content { max-width: 100%; }
+    .hero-tag { font-size: 0.6rem; letter-spacing: 0.12em; margin-bottom: 16px; }
+    .hero-headline {
+      font-size: clamp(2.6rem, 13vw, 4rem);
+      line-height: 0.92;
+      letter-spacing: -0.03em;
+      margin-bottom: 24px;
+      word-break: break-word;
+    }
+    .hero-sub { font-size: 0.88rem; margin-bottom: 28px; max-width: 100%; }
+    .hero-btns { flex-direction: column; gap: 10px; }
+    .btn-primary, .btn-outline { text-align: center; padding: 13px 20px; font-size: 0.85rem; }
+
+    /* SERVICES — fix white space beside images */
+    .services-grid { display: grid; grid-template-columns: 1fr; width: 100%; }
+    .service-card { border-right: none; width: 100%; min-width: 0; }
+    .service-img-wrap { width: 100%; }
+    .service-img { width: 100%; height: 200px; }
+
+    /* ABOUT */
+    .about { grid-template-columns: 1fr; }
+    .about-left { padding: 52px 20px; border-right: none; border-bottom: 1px solid var(--border); }
+    .about-right { padding: 40px 20px; }
+    .about-heading { font-size: clamp(1.7rem, 7vw, 2.2rem); }
+
+    /* STATS */
     .stats { grid-template-columns: 1fr 1fr; }
-    .stat-cell { padding: 36px 24px; }
-    footer { grid-template-columns: 1fr; padding: 40px 24px 28px; }
-    .footer-bottom { flex-direction: column; gap: 10px; text-align: center; }
+    .stat-cell { padding: 32px 20px; }
+    .stat-num { font-size: 2.4rem; }
+
+    /* SERVICES */
+    .services-header { padding: 52px 20px 36px; }
+    .services-heading { font-size: clamp(1.8rem, 7vw, 2.4rem); }
+    .services-subhead { font-size: 0.85rem; }
+    .service-body { padding: 24px 20px 28px; }
+    .services-cta-row { padding: 28px 20px; flex-direction: column; gap: 10px; }
+    .services-cta-row .btn-solid,
+    .services-cta-row .btn-outline { text-align: center; }
+
+    /* TAGLINES */
+    .taglines { padding: 44px 0; }
+    .tagline-item { font-size: 1.1rem; padding: 0 28px; }
+
+    /* CONTACT */
+    .contact { grid-template-columns: 1fr; }
+    .contact-left { padding: 52px 20px; border-right: none; border-bottom: 1px solid var(--border); }
+    .contact-right { padding: 40px 20px; }
+    .contact-heading { font-size: clamp(1.7rem, 7vw, 2.2rem); }
     .form-row { grid-template-columns: 1fr; }
+    .btn-submit { width: 100%; justify-content: center; }
+
+    /* FOOTER */
+    footer { grid-template-columns: 1fr; padding: 40px 20px 24px; gap: 32px; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  }
+
+  /* Extra small — 320px phones */
+  @media (max-width: 380px) {
+    .hero-headline { font-size: clamp(2.2rem, 12vw, 2.8rem); }
+    .nav-logo { font-size: 0.88rem; }
   }
 </style>
 </head>
@@ -379,13 +435,14 @@
     <div class="section-label">Get In Touch</div>
     <h2 class="contact-heading">Let's make something <em>clever</em> together.</h2>
     <p class="contact-body">Got a project, question or idea? Whether it's a one-off job or something longer-term, we'd love to hear from you. Tell us where you are, and we'll meet you there.</p>
-    <div class="contact-detail"><div class="detail-icon">✉</div><span><a href="/cdn-cgi/l/email-protection" class="__cf_email__" data-cfemail="90e4f1fef9f1bef3e2f5a8f9e6f5f3ffd0f7fdf1f9fcbef3fffd">[email&#160;protected]</a></span></div>
+    <div class="contact-detail"><div class="detail-icon">✉</div><span>info@cre8ive.co</span></div>
+    <div class="contact-detail"><div class="detail-icon">✉</div><span>tania.cre8iveco@gmail.com</span></div>
     <div class="contact-detail"><div class="detail-icon">☎</div><span>+27 82 732 5125</span></div>
     <p class="contact-quote">"Slick enough for London.<br>Chill enough for Cape Town."</p>
   </div>
   <div class="contact-right">
     <div class="section-label">Contact Us</div>
-    <p style="color:rgba(28,31,26,0.5);font-size:0.88rem;line-height:1.7;margin-bottom:32px;">Our office has no borders. So drop us a message from wherever you are — we'll meet you there.</p>
+    <p style="color:rgba(28,31,26,0.7);font-size:0.88rem;line-height:1.7;margin-bottom:32px;">Our office has no borders. So drop us a message from wherever you are — we'll meet you there.</p>
     <form onsubmit="return false;">
       <div class="form-row">
         <div class="field">
