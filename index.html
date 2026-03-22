@@ -34,6 +34,7 @@
     border-bottom: 1px solid var(--border);
   }
   .nav-logo { text-decoration: none; display: flex; align-items: center; }
+  .burger { display: none; }
   
   .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
   .nav-links a { font-size: 0.82rem; color: rgba(242,245,242,0.65); text-decoration: none; transition: color 0.2s; letter-spacing: 0.01em; }
@@ -177,11 +178,27 @@
   /* RESPONSIVE */
   @media (max-width: 860px) {
 
-    /* NAV — keep logo on one line, only show CTA button */
+    /* NAV — burger menu */
     nav { padding: 14px 20px; }
     .nav-logo { font-size: 0.95rem; white-space: nowrap; }
-    .nav-links li:not(:last-child) { display: none; }
-    .nav-cta { padding: 7px 14px !important; font-size: 0.75rem !important; }
+    .nav-links {
+      display: none;
+      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+      background: rgba(30,58,42,0.98);
+      flex-direction: column; align-items: center; justify-content: center;
+      gap: 0; z-index: 99;
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { width: 100%; text-align: center; border-bottom: 1px solid rgba(242,245,242,0.08); }
+    .nav-links li:last-child { border-bottom: none; }
+    .nav-links a { font-size: 1.2rem; color: rgba(245,244,240,0.75); padding: 22px 0; display: block; letter-spacing: 0.08em; }
+    .nav-links a:hover { color: #f5f4f0; }
+    .nav-cta { background: var(--salmon) !important; color: #f5f4f0 !important; border-radius: 0 !important; padding: 22px 0 !important; font-size: 1.2rem !important; }
+    .burger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 200; padding: 4px; background: none; border: none; }
+    .burger span { display: block; width: 24px; height: 2px; background: #f5f4f0; border-radius: 2px; transition: all 0.3s ease; transform-origin: center; }
+    .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
 
     /* HERO — fix headline overflow and banner height */
     .hero { padding: 0 20px 52px; min-height: 100vh; max-height: 100vh; }
@@ -254,12 +271,15 @@
 
 <nav>
   <a href="#" class="nav-logo"><img src="C8_Logo.svg" alt="The Cre8ive Co." style="height:28px;display:block;"></a>
-  <ul class="nav-links">
-    <li><a href="#about">About</a></li>
-    <li><a href="services.html">Services</a></li>
-    <li><a href="#contact">Contact</a></li>
-    <li><a href="#contact" class="nav-cta">Get a Quote ↓</a></li>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="#about" onclick="closeMenu()">About</a></li>
+    <li><a href="services.html" onclick="closeMenu()">Services</a></li>
+    <li><a href="#contact" onclick="closeMenu()">Contact</a></li>
+    <li><a href="#contact" class="nav-cta" onclick="closeMenu()">Get a Quote ↓</a></li>
   </ul>
+  <button class="burger" id="burger" aria-label="Toggle menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
 </nav>
 
 <!-- HERO -->
@@ -529,5 +549,19 @@
     <span>Creativity without borders.</span>
   </div>
 </footer>
+<script>
+  function toggleMenu() {
+    const burger = document.getElementById('burger');
+    const nav = document.getElementById('navLinks');
+    burger.classList.toggle('open');
+    nav.classList.toggle('open');
+    document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMenu() {
+    document.getElementById('burger').classList.remove('open');
+    document.getElementById('navLinks').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+</script>
 </body>
 </html>
