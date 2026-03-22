@@ -183,17 +183,20 @@
     .nav-logo { font-size: 0.95rem; white-space: nowrap; }
     .nav-links {
       display: none;
-      position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(30,58,42,0.98);
-      flex-direction: column; align-items: center; justify-content: center;
+      position: fixed; top: 57px; left: 0; right: 0;
+      background: var(--white);
+      flex-direction: column; align-items: stretch;
       gap: 0; z-index: 99;
+      border-bottom: 2px solid var(--border);
+      box-shadow: 0 8px 24px rgba(30,58,42,0.1);
     }
     .nav-links.open { display: flex; }
-    .nav-links li { width: 100%; text-align: center; border-bottom: 1px solid rgba(242,245,242,0.08); }
-    .nav-links li:last-child { border-bottom: none; }
-    .nav-links a { font-size: 1.2rem; color: rgba(245,244,240,0.75); padding: 22px 0; display: block; letter-spacing: 0.08em; }
-    .nav-links a:hover { color: #f5f4f0; }
-    .nav-cta { background: var(--salmon) !important; color: #f5f4f0 !important; border-radius: 0 !important; padding: 22px 0 !important; font-size: 1.2rem !important; }
+    .nav-links li { width: 100%; border-bottom: 1px solid var(--border); }
+    .nav-links li:last-child { border-bottom: none; padding: 16px 20px; }
+    .nav-links a { font-size: 1rem; color: var(--text); padding: 18px 24px; display: block; letter-spacing: 0.02em; font-weight: 500; }
+    .nav-links a:hover { color: var(--accent); background: rgba(30,58,42,0.04); }
+    .nav-cta { background: var(--accent) !important; color: #f5f4f0 !important; border-radius: 100px !important; padding: 14px 24px !important; font-size: 1rem !important; text-align: center !important; display: block !important; }
+    .nav-cta:hover { background: var(--olive-dark) !important; }
     .burger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 200; padding: 4px; background: none; border: none; }
     .burger span { display: block; width: 24px; height: 2px; background: #f5f4f0; border-radius: 2px; transition: all 0.3s ease; transform-origin: center; }
     .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
