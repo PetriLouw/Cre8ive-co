@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us — The Cre8ive Co.</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;0,9..40,700;0,9..40,800;1,9..40,300;1,9..40,400;1,9..40,700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --black: #1e3a2a;
+    --white: #f5f4f0;
+    --cream: #e8e6d8;
+    --accent: #4a7a5c;
+    --olive: #7aaa8a;
+    --olive-dark: #2d5c3e;
+    --salmon: #a85c3a;
+    --text: #1e3a2a;
+    --grey: #6a8a78;
+    --border: rgba(30,58,42,0.14);
+  }
+
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--white); color: var(--text); font-family: "DM Sans", sans-serif; font-size: 16px; line-height: 1.6; overflow-x: hidden; }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 18px 48px;
+    background: rgba(30,58,42,0.97);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+  }
+  .nav-logo { text-decoration: none; display: flex; align-items: center; }
+  .burger { display: none; }
+  .nav-links { display: flex; gap: 32px; list-style: none; align-items: center; }
+  .nav-links a { font-size: 0.82rem; color: rgba(242,245,242,0.65); text-decoration: none; transition: color 0.2s; letter-spacing: 0.01em; }
+  .nav-links a:hover, .nav-links a.active { color: #f5f4f0; }
+  .nav-cta { background: var(--salmon) !important; color: #f5f4f0 !important; padding: 8px 18px; border-radius: 100px; font-size: 0.8rem !important; font-weight: 500; transition: background 0.2s !important; }
+  .nav-cta:hover { background: #864830 !important; }
+
+  /* HERO BANNER */
+  .hero {
+    height: 600px; position: relative; overflow: hidden;
+    display: flex; flex-direction: column; justify-content: flex-end;
+    padding: 0 64px 64px;
+  }
+  .hero-img {
+    position: absolute; inset: 0; width: 100%; height: 100%;
+    object-fit: cover; object-position: center; z-index: 0;
+  }
+  .hero-overlay {
+    position: absolute; inset: 0; z-index: 1;
+    background: linear-gradient(to top, rgba(30,29,18,0.88) 0%, rgba(30,29,18,0.45) 55%, rgba(30,29,18,0.2) 100%);
+  }
+  .hero-content { position: relative; z-index: 2; max-width: 780px; }
+  .hero-tag { font-size: 0.68rem; text-transform: uppercase; letter-spacing: 0.18em; color: rgba(245,244,240,0.55); margin-bottom: 20px; }
+  .hero-headline {
+    font-family: "DM Sans", sans-serif;
+    font-size: clamp(2.2rem, 5vw, 4rem);
+    font-weight: 800; line-height: 1.05; letter-spacing: 0.04em; color: #f5f4f0;
+    margin-bottom: 0; max-width: 680px;
+  }
+  .hero-headline em { font-style: italic; color: var(--salmon); }
+
+  /* TICKER */
+  .ticker { overflow: hidden; padding: 14px 0; background: var(--black); }
+  .ticker-track { display: flex; animation: ticker 28s linear infinite; white-space: nowrap; }
+  .ticker-item { font-family: "DM Sans", sans-serif; font-size: 0.72rem; text-transform: uppercase; letter-spacing: 0.12em; color: rgba(242,245,242,0.75); padding: 0 36px; border-right: 1px solid rgba(242,245,242,0.15); display: flex; align-items: center; gap: 10px; flex-shrink: 0; }
+  .ticker-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--salmon); flex-shrink: 0; }
+  @keyframes ticker { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+  /* SECTION LABEL */
+  .section-label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.2em; color: var(--accent); margin-bottom: 28px; display: flex; align-items: center; gap: 10px; }
+  .section-label::before { content: ""; width: 20px; height: 1px; background: var(--accent); }
+
+  /* MAIN ABOUT GRID */
+  .about-main {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--border);
+  }
+  .about-left {
+    padding: 88px 64px;
+    border-right: 1px solid var(--border);
+    background: var(--white);
+  }
+  .about-right {
+    padding: 88px 64px;
+    background: var(--cream);
+    display: flex; flex-direction: column; justify-content: space-between;
+  }
+  .about-heading {
+    font-family: "DM Sans", sans-serif;
+    font-size: clamp(2rem, 3.5vw, 3rem);
+    font-weight: 800; line-height: 1.05; letter-spacing: 0.04em;
+    margin-bottom: 28px;
+  }
+  .about-heading em { font-style: italic; color: var(--salmon); }
+  .about-body {
+    font-size: 0.95rem; color: rgba(30,58,42,0.65);
+    line-height: 1.85; margin-bottom: 40px;
+  }
+  .about-body p + p { margin-top: 18px; }
+  .about-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-solid {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--salmon); color: #f5f4f0;
+    padding: 13px 26px; border-radius: 100px;
+    font-size: 0.88rem; font-weight: 600;
+    text-decoration: none; transition: background 0.2s;
+  }
+  .btn-solid:hover { background: #864830; }
+  .btn-outline-dark {
+    display: inline-flex; align-items: center; gap: 8px;
+    border: 1px solid rgba(30,58,42,0.25);
+    color: var(--text); padding: 13px 26px; border-radius: 100px;
+    font-size: 0.88rem; text-decoration: none; transition: border-color 0.2s, color 0.2s;
+  }
+  .btn-outline-dark:hover { border-color: var(--accent); color: var(--accent); }
+
+  /* HOW WE WORK CARD */
+  .how-card {
+    background: var(--white); border: 1px solid var(--border);
+    border-radius: 12px; padding: 32px; margin-bottom: 32px;
+  }
+  .how-card h3 { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.18em; color: var(--grey); margin-bottom: 18px; }
+  .work-item {
+    display: flex; align-items: flex-start; gap: 12px;
+    padding: 11px 0; border-bottom: 1px solid var(--border);
+    font-size: 0.88rem; color: rgba(30,58,42,0.75);
+  }
+  .work-item:last-child { border-bottom: none; }
+  .check {
+    width: 20px; height: 20px; border-radius: 50%;
+    background: rgba(168,92,58,0.1);
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0; font-size: 0.6rem; color: var(--salmon); margin-top: 1px;
+  }
+  .about-quote {
+    font-family: "DM Sans", sans-serif; font-size: 1.2rem;
+    font-weight: 700; line-height: 1.4; letter-spacing: 0.03em;
+    border-left: 3px solid var(--salmon); padding-left: 20px;
+    color: var(--text);
+  }
+
+  /* STATS */
+  .stats { display: grid; grid-template-columns: repeat(4,1fr); background: var(--cream); border-bottom: 1px solid var(--border); }
+  .stat-cell { padding: 56px 48px; border-right: 1px solid var(--border); }
+  .stat-cell:last-child { border-right: none; }
+  .stat-num { font-family: "DM Sans", sans-serif; font-size: 3rem; font-weight: 800; letter-spacing: 0.04em; line-height: 1; color: var(--salmon); }
+  .stat-label { margin-top: 10px; font-size: 0.82rem; color: var(--grey); line-height: 1.55; }
+
+  /* FOUNDER STRIP */
+  .founder {
+    display: grid; grid-template-columns: 1fr 1fr;
+    border-bottom: 1px solid var(--border);
+  }
+  .founder-img {
+    overflow: hidden; position: relative; min-height: 480px;
+  }
+  .founder-img img {
+    width: 100%; height: 100%; object-fit: cover; object-position: center top; display: block;
+  }
+  .founder-body {
+    padding: 88px 64px; background: var(--black);
+    display: flex; flex-direction: column; justify-content: center;
+  }
+  .founder-body .section-label { color: var(--olive); }
+  .founder-body .section-label::before { background: var(--olive); }
+  .founder-name {
+    font-family: "DM Sans", sans-serif;
+    font-size: clamp(2rem, 3vw, 2.8rem);
+    font-weight: 800; letter-spacing: 0.04em;
+    color: #f5f4f0; margin-bottom: 6px;
+  }
+  .founder-title { font-size: 0.82rem; color: var(--olive); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 28px; }
+  .founder-bio { font-size: 0.93rem; color: rgba(245,244,240,0.6); line-height: 1.85; }
+  .founder-bio p + p { margin-top: 16px; }
+
+  /* TAGLINE MARQUEE */
+  .taglines { overflow: hidden; padding: 64px 0; background: var(--black); border-bottom: 1px solid var(--border); }
+  .tagline-track { display: flex; animation: ticker 38s linear infinite; white-space: nowrap; }
+  .tagline-item { font-family: "DM Sans", sans-serif; font-size: 1.4rem; font-weight: 800; letter-spacing: 0.04em; padding: 0 44px; border-right: 1px solid rgba(245,244,240,0.2); display: flex; align-items: center; gap: 18px; flex-shrink: 0; color: rgba(245,244,240,0.85); }
+  .tagline-item em { font-style: italic; color: #f5f4f0; }
+  .tagline-star { color: var(--salmon); font-size: 1rem; }
+
+  /* CTA BAND */
+  .cta-band { padding: 88px 64px; text-align: center; background: var(--white); border-bottom: 1px solid var(--border); }
+  .cta-band h2 { font-family: "DM Sans", sans-serif; font-size: clamp(2rem, 4vw, 3.2rem); font-weight: 800; letter-spacing: 0.04em; color: var(--text); margin-bottom: 16px; }
+  .cta-band h2 em { font-style: italic; color: var(--salmon); }
+  .cta-band p { color: rgba(30,58,42,0.55); font-size: 0.92rem; line-height: 1.75; max-width: 440px; margin: 0 auto 36px; }
+  .cta-band-btns { display: flex; gap: 12px; justify-content: center; flex-wrap: wrap; }
+
+  /* FOOTER */
+  footer { background: var(--black); padding: 56px 64px 36px; display: grid; grid-template-columns: 1.4fr 1fr 1fr; gap: 48px; align-items: start; }
+  .footer-logo { margin-bottom: 10px; }
+  .footer-tagline { font-size: 0.82rem; color: rgba(242,245,242,0.4); line-height: 1.6; }
+  .footer-links h4 { font-size: 0.62rem; text-transform: uppercase; letter-spacing: 0.18em; color: rgba(242,245,242,0.35); margin-bottom: 14px; }
+  .footer-links ul { list-style: none; }
+  .footer-links li { margin-bottom: 9px; }
+  .footer-links a { color: rgba(242,245,242,0.55); text-decoration: none; font-size: 0.85rem; transition: color 0.2s; }
+  .footer-links a:hover { color: var(--olive); }
+  .footer-bottom { grid-column: 1/-1; border-top: 1px solid rgba(242,245,242,0.08); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; font-size: 0.74rem; color: rgba(242,245,242,0.3); }
+
+  /* RESPONSIVE */
+  @media (max-width: 860px) {
+    nav { padding: 14px 20px; }
+    .nav-links {
+      display: none;
+      position: fixed; top: 57px; left: 0; right: 0;
+      background: var(--white);
+      flex-direction: column; align-items: stretch;
+      gap: 0; z-index: 99; list-style: none;
+      border-bottom: 2px solid var(--border);
+      box-shadow: 0 8px 24px rgba(30,58,42,0.1);
+    }
+    .nav-links.open { display: flex; }
+    .nav-links li { width: 100%; border-bottom: 1px solid var(--border); }
+    .nav-links li:last-child { border-bottom: none; padding: 16px 20px; }
+    .nav-links a { font-size: 1rem; color: var(--text); padding: 18px 24px; display: block; letter-spacing: 0.02em; font-weight: 500; }
+    .nav-links a:hover, .nav-links a.active { color: var(--accent); background: rgba(30,58,42,0.04); }
+    .nav-cta { background: var(--accent) !important; color: #f5f4f0 !important; border-radius: 100px !important; padding: 14px 24px !important; font-size: 1rem !important; text-align: center !important; display: block !important; }
+    .nav-cta:hover { background: var(--olive-dark) !important; }
+    .burger { display: flex; flex-direction: column; gap: 5px; cursor: pointer; z-index: 200; padding: 4px; background: none; border: none; }
+    .burger span { display: block; width: 24px; height: 2px; background: #f5f4f0; border-radius: 2px; transition: all 0.3s ease; transform-origin: center; }
+    .burger.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    .burger.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    .burger.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+    .hero { height: 480px; padding: 0 20px 44px; }
+    .hero-img, .hero video { height: 480px; object-position: left center; }
+    .hero-headline { font-size: clamp(1.8rem, 7vw, 2.6rem); }
+
+    .about-main { grid-template-columns: 1fr; }
+    .about-left { padding: 52px 24px; border-right: none; border-bottom: 1px solid var(--border); }
+    .about-right { padding: 44px 24px; }
+
+    .stats { grid-template-columns: 1fr 1fr; }
+    .stat-cell { padding: 32px 20px; }
+    .stat-num { font-size: 2.4rem; }
+
+    .founder { grid-template-columns: 1fr; }
+    .founder-img { min-height: 320px; }
+    .founder-body { padding: 52px 24px; }
+
+    .taglines { padding: 44px 0; }
+    .tagline-item { font-size: 1.1rem; padding: 0 28px; }
+
+    .cta-band { padding: 64px 24px; }
+    .cta-band-btns { flex-direction: column; align-items: center; }
+
+    footer { grid-template-columns: 1fr; padding: 40px 20px 24px; gap: 32px; }
+    .footer-bottom { flex-direction: column; gap: 8px; text-align: center; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="index.html" class="nav-logo"><img src="C8_Logo.svg" alt="The Cre8ive Co." style="height:28px;display:block;"></a>
+  <ul class="nav-links" id="navLinks">
+    <li><a href="index.html" onclick="closeMenu()">Home</a></li>
+    <li><a href="about.html" class="active" onclick="closeMenu()">About</a></li>
+    <li><a href="services.html" onclick="closeMenu()">Services</a></li>
+    <li><a href="index.html#contact" onclick="closeMenu()">Contact</a></li>
+    <li><a href="index.html#contact" class="nav-cta" onclick="closeMenu()">Get a Quote ↓</a></li>
+  </ul>
+  <button class="burger" id="burger" aria-label="Toggle menu" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </button>
+</nav>
+
+<!-- HERO BANNER -->
+<section class="hero">
+  <video class="hero-img" autoplay muted loop playsinline>
+    <source src="hero-video.mp4" type="video/mp4">
+  </video>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-tag">About Us · The Cre8ive Co.</div>
+    <h1 class="hero-headline">"Our office has no borders.<br>It's <em>nowhere</em> and <em>everywhere.</em>"</h1>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker">
+  <div class="ticker-track">
+    <div class="ticker-item"><span class="ticker-dot"></span>Remote-First Studio</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Founded by Tania Louw</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Cape Town &amp; Beyond</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Strategy. Creativity. Results.</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Small Team. Big Ideas.</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>No Borders. No Limits.</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Remote-First Studio</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Founded by Tania Louw</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Cape Town &amp; Beyond</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Strategy. Creativity. Results.</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>Small Team. Big Ideas.</div>
+    <div class="ticker-item"><span class="ticker-dot"></span>No Borders. No Limits.</div>
+  </div>
+</div>
+
+<!-- ABOUT MAIN -->
+<section class="about-main">
+  <div class="about-left">
+    <div class="section-label">Who We Are</div>
+    <h2 class="about-heading">We're not an agency —<br>just two passionate <em>humans.</em></h2>
+    <div class="about-body">
+      <p>Founded by Tania Louw, The Cre8ive Co. is a remote-first collective built on collaboration, clarity and creativity. We're not an agency — just two passionate humans (and sometimes a cat or two) working behind-the-scenes to bring your vision to life.</p>
+      <p>We work with businesses of all shapes and sizes, offering a strategic yet flexible approach to content, design and digital performance. Whether you need someone to steer the ship or just jump on board for a few sails, we're here for the journey.</p>
+      <p>No long onboarding processes, no layers of account managers, no unnecessary fluff. Just smart people doing good work — for brands that deserve it.</p>
+    </div>
+    <div class="about-btns">
+      <a href="index.html#contact" class="btn-solid">Let's Talk →</a>
+      <a href="index.html#contact" class="btn-outline-dark">Get in Touch</a>
+    </div>
+  </div>
+  <div class="about-right">
+    <div class="how-card">
+      <h3>How We Work</h3>
+      <div class="work-item"><span class="check">✓</span>Project-based or retainer — whatever suits you best</div>
+      <div class="work-item"><span class="check">✓</span>Custom quotes for unique needs — no cookie-cutter packages</div>
+      <div class="work-item"><span class="check">✓</span>In-house senior UX/UI designer for additional design work</div>
+      <div class="work-item"><span class="check">✓</span>Strategy first — always</div>
+      <div class="work-item"><span class="check">✓</span>Remote-first, always on — wherever you are in the world</div>
+    </div>
+    <p class="about-quote">"We don't just make things look good — we make them work harder."</p>
+  </div>
+</section>
+
+<!-- STATS -->
+<section class="stats">
+  <div class="stat-cell">
+    <div class="stat-num">50+</div>
+    <div class="stat-label">Brands we've<br>worked with</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-num">3x</div>
+    <div class="stat-label">Average engagement<br>growth for clients</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-num">2</div>
+    <div class="stat-label">Continents.<br>Zero borders.</div>
+  </div>
+  <div class="stat-cell">
+    <div class="stat-num">100%</div>
+    <div class="stat-label">Remote-first.<br>Always on.</div>
+  </div>
+</section>
+
+<!-- FOUNDER -->
+<section class="founder">
+  <div class="founder-img">
+    <img src="contact.jpg" alt="Tania Louw — Founder">
+  </div>
+  <div class="founder-body">
+    <div class="section-label">The Person Behind It</div>
+    <div class="founder-name">Tania Louw</div>
+    <div class="founder-title">Founder &amp; Creative Director</div>
+    <div class="founder-bio">
+      <p>Tania started The Cre8ive Co. with one belief: that great creative work shouldn't be locked behind big agency price tags or bloated teams. Brands of every size deserve strategy, soul, and someone who actually gives a damn.</p>
+      <p>With a background spanning social media, content strategy, brand design and digital marketing, Tania brings both the big-picture thinking and the get-it-done energy that clients actually need. She's worked with startups, established businesses, and everything in between — across Cape Town, London, and beyond.</p>
+      <p>When she's not deep in a strategy doc or crafting a campaign, you'll find her with a coffee, a cat (or two), and probably a very long to-do list.</p>
+    </div>
+  </div>
+</section>
+
+<!-- TAGLINE MARQUEE -->
+<div class="taglines">
+  <div class="tagline-track">
+    <div class="tagline-item"><span class="tagline-star">✦</span>Creativity without borders</div>
+    <div class="tagline-item"><em>Small team.</em>&nbsp;Big ideas.</div>
+    <div class="tagline-item"><span class="tagline-star">✦</span>Performance with personality</div>
+    <div class="tagline-item"><em>Not just pretty posts</em>&nbsp;— purposeful ones.</div>
+    <div class="tagline-item"><span class="tagline-star">✦</span>Design so good it doesn't need to shout</div>
+    <div class="tagline-item"><em>Strategy in stilettos.</em></div>
+    <div class="tagline-item"><span class="tagline-star">✦</span>Scroll past us? Bold.</div>
+    <div class="tagline-item"><span class="tagline-star">✦</span>Creativity without borders</div>
+    <div class="tagline-item"><em>Small team.</em>&nbsp;Big ideas.</div>
+    <div class="tagline-item"><span class="tagline-star">✦</span>Performance with personality</div>
+    <div class="tagline-item"><em>Not just pretty posts</em>&nbsp;— purposeful ones.</div>
+    <div class="tagline-item"><span class="tagline-star">✦</span>Design so good it doesn't need to shout</div>
+    <div class="tagline-item"><em>Strategy in stilettos.</em></div>
+    <div class="tagline-item"><span class="tagline-star">✦</span>Scroll past us? Bold.</div>
+  </div>
+</div>
+
+<!-- CTA BAND -->
+<div class="cta-band">
+  <h2>Ready to make something <em>clever?</em></h2>
+  <p>Whether you've got a brief ready or just a rough idea, we'd love to hear from you. Let's figure out what your brand actually needs — and build it together.</p>
+  <div class="cta-band-btns">
+    <a href="index.html#contact" class="btn-solid">Let's Talk →</a>
+    <a href="services.html" class="btn-outline-dark">See Our Services</a>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div>
+    <div class="footer-logo"><img src="C8_Logo.svg" alt="The Cre8ive Co." style="height:32px;display:block;margin-bottom:4px;"></div>
+    <div class="footer-tagline">Creativity without borders.<br>Remote-first. Results-driven.</div>
+  </div>
+  <div class="footer-links">
+    <h4>Navigation</h4>
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="about.html">About Us</a></li>
+      <li><a href="services.html">Services</a></li>
+      <li><a href="index.html#contact">Contact</a></li>
+    </ul>
+  </div>
+  <div class="footer-links">
+    <h4>Contact</h4>
+    <ul>
+      <li><a href="mailto:info@cre8ive.co">info@cre8ive.co</a></li>
+      <li><a href="tel:+27827325125">+27 82 732 5125</a></li>
+    </ul>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2025 The Cre8ive Co. All rights reserved.</span>
+    <span>Creativity without borders.</span>
+  </div>
+</footer>
+
+<script>
+  function toggleMenu() {
+    const burger = document.getElementById('burger');
+    const nav = document.getElementById('navLinks');
+    burger.classList.toggle('open');
+    nav.classList.toggle('open');
+    document.body.style.overflow = nav.classList.contains('open') ? 'hidden' : '';
+  }
+  function closeMenu() {
+    document.getElementById('burger').classList.remove('open');
+    document.getElementById('navLinks').classList.remove('open');
+    document.body.style.overflow = '';
+  }
+</script>
+</body>
+</html>
